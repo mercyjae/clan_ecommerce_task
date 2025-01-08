@@ -10,9 +10,10 @@ class Products {
   final String category;
   final String description;
   final String color;
+  final double previousPrice;
    int quantity;
 
-  Products( {
+  Products(  {
     required this.id,
     required this.name,
     required this.price,
@@ -21,7 +22,9 @@ class Products {
     required this.category,
     required this.description,
     required this.color,
+    required this.previousPrice,
     this.quantity = 1
+
   });
 }
 

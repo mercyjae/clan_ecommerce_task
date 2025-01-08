@@ -12,6 +12,7 @@ class CartScreen extends StatelessWidget {
     final sizeWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -22,7 +23,7 @@ class CartScreen extends StatelessWidget {
         ),
         leading: Container(
           width: 20,
-          margin: const EdgeInsets.only(top: 10, left: 10),
+          margin: const EdgeInsets.only(top: 15, left: 10),
           padding: const EdgeInsets.only(left: 7),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -35,6 +36,24 @@ class CartScreen extends StatelessWidget {
             },
           ),
         ),
+        actions: [
+          Container(
+            width: 40,
+            //height: 20,
+            margin: const EdgeInsets.only(top: 10, right: 10),
+            // padding: const EdgeInsets.only(right: 7),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                border: Border.all(color: Colors.grey)),
+            child: IconButton(
+              icon: const Icon(Icons.more_horiz, color: Colors.black),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -194,7 +213,7 @@ class CartScreen extends StatelessWidget {
                             Row(
                               children: [
                                 const Text(
-                                  'Promocode applied',
+                                  'Promo code applied',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.green,
@@ -245,11 +264,12 @@ class CartScreen extends StatelessWidget {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                cartProvider
-                                    .applyPromoCode(promoCodeController.text);
+                                cartProvider.applyPromoCode(
+                                    promoCodeController.text.trim());
                                 if (cartProvider.promoCode != null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
+                                        backgroundColor: Colors.green,
                                         content: Text("Promo code applied!")),
                                   );
                                 } else {
@@ -280,7 +300,7 @@ class CartScreen extends StatelessWidget {
                           fontSize: 18),
                     ),
                     Text(
-                      '${cartProvider.promoDiscount}',
+                      '${cartProvider.promoDiscount.round()}%',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
@@ -309,7 +329,7 @@ class CartScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Checkout",
+                    "Checkout", 
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,

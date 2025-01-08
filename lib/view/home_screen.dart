@@ -1,4 +1,3 @@
-import 'package:ecommerce/model/product_model.dart';
 import 'package:ecommerce/notifier/cart_provider.dart';
 import 'package:ecommerce/view/cart_screen.dart';
 import 'package:ecommerce/view/details_screen.dart';
@@ -19,6 +18,7 @@ class HomeScreen extends StatelessWidget {
     final sizeHeight = MediaQuery.of(context).size.height;
     final sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              height: 150,
+              height: 130,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.green,
@@ -114,9 +114,9 @@ class HomeScreen extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 10),
                           Container(
-                            height: 40,
+                            height: 35,
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 5, vertical: 5),
                             decoration: BoxDecoration(

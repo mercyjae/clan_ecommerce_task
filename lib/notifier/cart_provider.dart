@@ -16,6 +16,7 @@ class CartProvider with ChangeNotifier {
     Products(
         id: '1',
         name: "AirPods",
+        previousPrice: 200.00,
         price: 150.00,
         rating: "3.9",
         color: 'Green',
@@ -27,6 +28,7 @@ class CartProvider with ChangeNotifier {
         id: '2',
         name: "MacBook Pro 13",
         price: 1100.00,
+        previousPrice: 1500.00,
         rating: "5.0",
         color: 'Grey',
         image: 'assets/images/laptop1.png',
@@ -36,6 +38,7 @@ class CartProvider with ChangeNotifier {
     Products(
         id: '3',
         name: "iPhone 13",
+        previousPrice: 900.00,
         price: 809.00,
         rating: "4.8",
         color: 'Grey',
@@ -46,6 +49,7 @@ class CartProvider with ChangeNotifier {
     Products(
         id: '4',
         name: "AirPods",
+        previousPrice: 200.00,
         price: 132.00,
         rating: "4.1",
         color: 'Green',
@@ -57,6 +61,7 @@ class CartProvider with ChangeNotifier {
         id: '5',
         name: "Gaming GPU",
         price: 800.00,
+        previousPrice: 930.00,
         rating: "4.2",
         color: 'White',
         image: 'assets/images/laptop2.png',
@@ -66,6 +71,7 @@ class CartProvider with ChangeNotifier {
     Products(
         id: '6',
         name: "iPhone 14",
+        previousPrice: 1500.00,
         price: 1200.00,
         rating: "4.8",
         image: 'assets/images/phone2.png',
@@ -76,6 +82,7 @@ class CartProvider with ChangeNotifier {
     Products(
         id: '7',
         name: "AirPods",
+        previousPrice: 190.00,
         price: 189.00,
         rating: "4.9",
         image: 'assets/images/headset3.png',
@@ -87,6 +94,7 @@ class CartProvider with ChangeNotifier {
         id: '8',
         name: "Dell CPU",
         price: 800.00,
+        previousPrice: 900.00,
         rating: "3.3",
         image: 'assets/images/laptop3.png',
         category: "Laptops",
@@ -97,6 +105,7 @@ class CartProvider with ChangeNotifier {
         id: '9',
         name: "iPhone 14",
         price: 4409.00,
+        previousPrice: 5900.00,
         rating: "4.8",
         image: 'assets/images/phone3.png',
         category: "Smartphones",
@@ -187,13 +196,13 @@ class CartProvider with ChangeNotifier {
 
   String? get promoCode => _promoCode;
   double get promoDiscount => _promoDiscount;
-  bool _isPromoCodeApplied = false; // Tracks promo code state
+  bool _isPromoCodeApplied = false;
   bool get isPromoCodeApplied => _isPromoCodeApplied;
 
   void applyPromoCode(String code) {
     if (code == "ADJ3AK") {
       _promoCode = code;
-      _promoDiscount = subtotalPrice * 0.4; // 40% discount
+      _promoDiscount = subtotalPrice * 0.4;
       _isPromoCodeApplied = true;
 
       notifyListeners();

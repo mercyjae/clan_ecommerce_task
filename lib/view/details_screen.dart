@@ -214,7 +214,7 @@ class DetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '\$${product.price.toString()}',
+                            '\$${product.previousPrice.toString()}',
                             style: const TextStyle(
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
