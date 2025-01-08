@@ -1,16 +1,7 @@
-# ecommerce
+# An Ecommerce App
 
-A new Flutter project.
+The E-commerce App is a comprehensive shopping platform that provides users with a seamless browsing, cart management, and checkout experience. With features like filtering by categories, quantity management (increment/decrement), and discount codes. It caters to all aspects of online shopping while ensuring simplicity and efficiency.
 
-## Getting Started
+## Video Demo
+https://drive.google.com/file/d/14BZsk8LZhFl5SvrfN2F7E5aLLHj--U5a/view?usp=sharing
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
