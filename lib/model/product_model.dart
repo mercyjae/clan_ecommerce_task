@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+
 class Products {
    final String id;
   final String name;
@@ -7,6 +9,7 @@ class Products {
   final String image;
   final String category;
   final String description;
+  final String color;
    int quantity;
 
   Products( {
@@ -17,6 +20,7 @@ class Products {
     required this.image,
     required this.category,
     required this.description,
+    required this.color,
     this.quantity = 1
   });
 }

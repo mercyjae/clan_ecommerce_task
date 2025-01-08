@@ -1,4 +1,5 @@
 import 'package:ecommerce/notifier/cart_provider.dart';
+import 'package:ecommerce/view/bottom_nav_bar.dart';
 import 'package:ecommerce/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,8 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'E-Commerce App',
       theme: ThemeData(primarySwatch: Colors.green),
-      home: HomeScreen(),
-    
+      home: BottomNavBar(),
     );
   }
 }

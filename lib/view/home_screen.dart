@@ -1,9 +1,9 @@
 import 'package:ecommerce/model/product_model.dart';
 import 'package:ecommerce/notifier/cart_provider.dart';
+import 'package:ecommerce/view/cart_screen.dart';
 import 'package:ecommerce/view/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 class HomeScreen extends StatelessWidget {
   final List<String> categories = [
@@ -16,7 +16,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<CartProvider>(context);
-
+    final sizeHeight = MediaQuery.of(context).size.height;
+    final sizeWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -24,17 +25,46 @@ class HomeScreen extends StatelessWidget {
         title: const Text(
           "Discover",
           style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+              color: Colors.black, fontWeight: FontWeight.w500, fontSize: 22),
         ),
         actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 10, top: 10),
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey), shape: BoxShape.circle),
-            child: IconButton(
-              icon: const Icon(Icons.shopping_bag_outlined, color: Colors.black),
-              onPressed: () {},
-            ),
+          Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(right: 10, top: 10),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    shape: BoxShape.circle),
+                child: IconButton(
+                  icon: const Icon(Icons.shopping_bag_outlined,
+                      color: Colors.black),
+                  onPressed: () {
+                    productProvider.cartItems.length == 0
+                        ? null
+                        : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CartScreen()));
+                  },
+                ),
+              ),
+              productProvider.cartItems.length == 0
+                  ? const SizedBox()
+                  : Positioned(
+                      top: 5,
+                      left: 30,
+                      child: Container(
+                          height: 20,
+                          width: 20,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Colors.green),
+                          child: Center(
+                            child: Text(
+                              '${productProvider.cartItems.length}',
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          )))
+            ],
           ),
         ],
       ),
@@ -60,7 +90,6 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-
             Container(
               height: 150,
               width: double.infinity,
@@ -81,23 +110,26 @@ class HomeScreen extends StatelessWidget {
                             "Clearance\nSales",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 27,
-                              fontWeight: FontWeight.w800,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           const SizedBox(height: 8),
                           Container(
+                            height: 40,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
+                                horizontal: 5, vertical: 5),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white),
-                            child: const Text(
-                              "%  Up to  50%",
-                              style: TextStyle(
-                                color: Colors.green,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                            child: const Center(
+                              child: Text(
+                                "%  Up to  50%",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -105,27 +137,24 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(Icons.phone_android,
-                        size: 80, color: Colors.white),
-                  ),
+                  Image.asset('assets/images/small_phone.png'),
                 ],
               ),
             ),
             const SizedBox(height: 20),
-
-            
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   "Categories",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: const Text("See all"),
+                  child: const Text(
+                    "See all",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                  ),
                 ),
               ],
             ),
@@ -155,18 +184,20 @@ class HomeScreen extends StatelessWidget {
                             color: productProvider.selectedCategory ==
                                     categories[index]
                                 ? Colors.green
-                                : Colors.black,
-                            width: 2),
-                        borderRadius: BorderRadius.circular(20),
+                                : Colors.black87,
+                            width: 1.5),
+                        borderRadius: BorderRadius.circular(13),
                       ),
-                      child: Text(
-                        categories[index],
-                        style: TextStyle(
-                          color: productProvider.selectedCategory ==
-                                  categories[index]
-                              ? Colors.white
-                              : Colors.black,
-                          fontWeight: FontWeight.bold,
+                      child: Center(
+                        child: Text(
+                          categories[index],
+                          style: TextStyle(
+                            color: productProvider.selectedCategory ==
+                                    categories[index]
+                                ? Colors.white
+                                : Colors.black87,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -175,14 +206,13 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  childAspectRatio: 0.75,
+                  childAspectRatio: 0.7,
                 ),
                 itemCount: productProvider.filteredProducts.length,
                 itemBuilder: (context, index) {
@@ -201,7 +231,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Container(
                             width: double.infinity,
-                            height: 180,
+                            height: sizeHeight * 0.2,
                             decoration: BoxDecoration(
                               color: Colors.grey[200],
                               borderRadius: BorderRadius.circular(16),
@@ -216,25 +246,36 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Text(
                               product.name,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                  fontSize: 14),
                               textAlign: TextAlign.center,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Icon(Icons.star,
-                                    color: Colors.orange, size: 16),
-                                const SizedBox(width: 4),
-                                Text(product.rating),
+                                    color: Colors.orange, size: 18),
+                                const SizedBox(width: 5),
+                                Text(
+                                  product.rating,
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ],
                             ),
                           ],
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          product.price.toString(),
-                          style: const TextStyle(color: Colors.green),
+                          '\$${product.price.toString()}',
+                          style: const TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18),
                         ),
                         const SizedBox(height: 4),
                       ],
